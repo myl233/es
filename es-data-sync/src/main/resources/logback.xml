@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <property name="APP_NAME" value="esDataSync"/>
+    <property name="LOG_PATH" value="${user.home}/esdump/logs"/>
+    <property name="LOG_FILE" value="${LOG_PATH}/es_data_sync.log"/>
+    <property name="LOG_LEVEL" value="INFO"/>
+    <property name="log.pattern" value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{20} - [%method,%line] - %msg%n"/>
+    <!-- 控制台输出 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+            <charset>utf8</charset>
+        </encoder>
+    </appender>
+
+    <!-- 将日志写入日志文件 -->
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <!-- 写到自己项目的 logs.test.log-->
+        <!--        <file>${catalina.base}/logs/test.log</file>-->
+        <file>${LOG_FILE}</file>
+        <append>true</append><!-- 日志追加 -->
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+            <charset>utf8</charset>
+        </encoder>
+    </appender>
+
+    <root level="${LOG_LEVEL}">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>
